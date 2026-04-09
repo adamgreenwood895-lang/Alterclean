@@ -94,7 +94,7 @@
       font-size: 15px;
       font-weight: 600;
       cursor: pointer;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, opacity 0.2s ease;
     }
 
     button:active {
@@ -164,13 +164,14 @@
       </div>
     `;
 
-    document.getElementById("backButton").addEventListener("click", () => {
+    document.getElementById("backButton").onclick = () => {
       window.location.href = "products.html";
-    });
+    };
 
-    document.getElementById("continueButton").addEventListener("click", () => {
+    document.getElementById("continueButton").onclick = () => {
+      // Confirm page always goes to payment first
       window.location.href = "payment.html";
-    });
+    };
   </script>
 
 </body>
