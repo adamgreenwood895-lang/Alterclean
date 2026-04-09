@@ -8,98 +8,110 @@
   <style>
     body {
       margin: 0;
+      min-height: 100vh;
       background: #000;
       color: white;
       font-family: Arial, sans-serif;
-    }
-
-    .payment-page {
-      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 30px 20px;
+      padding: 24px;
       box-sizing: border-box;
     }
 
     .payment-card {
       width: 100%;
-      max-width: 360px;
+      max-width: 380px;
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: 28px;
       padding: 28px;
       box-sizing: border-box;
       backdrop-filter: blur(18px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
     }
 
-    .payment-title {
-      font-size: 28px;
+    h1 {
+      margin: 0 0 10px;
+      font-size: 30px;
       font-weight: 600;
-      margin-bottom: 10px;
     }
 
-    .payment-price {
+    .summary {
       color: rgba(255,255,255,0.65);
-      margin-bottom: 30px;
-      font-size: 16px;
+      margin-bottom: 28px;
+      line-height: 1.5;
     }
 
     .field {
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
-    .field input {
+    input {
       width: 100%;
       padding: 16px;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 14px;
-      background: rgba(255,255,255,0.06);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.05);
       color: white;
       font-size: 15px;
       box-sizing: border-box;
       outline: none;
     }
 
+    input::placeholder {
+      color: rgba(255,255,255,0.35);
+    }
+
     .pay-button {
       width: 100%;
-      margin-top: 10px;
-      padding: 16px;
+      margin-top: 14px;
       border: none;
-      border-radius: 16px;
+      border-radius: 18px;
+      padding: 18px;
       background: white;
       color: black;
       font-size: 16px;
       font-weight: 600;
       cursor: pointer;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .pay-button.processing {
+      background: rgba(255,255,255,0.2);
+      color: white;
+    }
+
+    .pay-button.approved {
+      background: white;
+      color: black;
+      transform: scale(1.02);
     }
   </style>
 </head>
 <body>
 
-  <div class="payment-page">
-    <div class="payment-card">
-      <div class="payment-title">Payment</div>
-      <div class="payment-price" id="paymentPrice"></div>
+  <div class="payment-card">
+    <h1>Payment</h1>
+    <div class="summary" id="summary"></div>
 
-      <div class="field">
-        <input type="text" placeholder="Cardholder Name">
-      </div>
-
-      <div class="field">
-        <input type="text" placeholder="Card Number">
-      </div>
-
-      <div class="field">
-        <input type="text" placeholder="Expiry Date">
-      </div>
-
-      <div class="field">
-        <input type="text" placeholder="CVV">
-      </div>
-
-      <button class="pay-button" id="payButton">Pay Now</button>
+    <div class="field">
+      <input type="text" placeholder="Cardholder Name">
     </div>
+
+    <div class="field">
+      <input type="text" placeholder="Card Number">
+    </div>
+
+    <div class="field">
+      <input type="text" placeholder="Expiry Date">
+    </div>
+
+    <div class="field">
+      <input type="text" placeholder="CVV">
+    </div>
+
+    <button class="pay-button" id="payButton">Pay Now</button>
   </div>
 
   <script>
@@ -109,10 +121,24 @@
       window.location.href = "products.html";
     }
 
-    document.getElementById("paymentPrice").textContent = `${product.name} • ${product.price}`;
+    document.getElementById("summary").textContent = `${product.name} • ${product.price}`;
 
-    document.getElementById("payButton").addEventListener("click", () => {
-      window.location.href = "tracking.html";
+    const payButton = document.getElementById("payButton");
+
+    payButton.addEventListener("click", () => {
+      payButton.disabled = true;
+      payButton.classList.add("processing");
+      payButton.textContent = "Processing...";
+
+      setTimeout(() => {
+        payButton.classList.remove("processing");
+        payButton.classList.add("approved");
+        payButton.textContent = "Approved";
+      }, 1500);
+
+      setTimeout(() => {
+        window.location.href = "tracking.html";
+      }, 2600);
     });
   </script>
 
