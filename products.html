@@ -125,14 +125,21 @@
       card.className = `product-card ${index === 0 ? "active" : ""}`;
 
       card.innerHTML = `
-        <img src="${product.image}" alt="${product.name}">
+  <img src="${product.image}" alt="${product.name}">
 
-        <div class="product-info">
-          <div class="product-name">${product.name}</div>
-          <div class="product-price">${product.price}</div>
-          <button class="buy-button">Buy</button>
-        </div>
-      `;
+  <div class="product-info">
+    <div class="product-name">${product.name}</div>
+    <div class="product-price">${product.price}</div>
+    <button class="buy-button">Buy</button>
+  </div>
+`;
+
+const buyButton = card.querySelector(".buy-button");
+
+buyButton.addEventListener("click", () => {
+  localStorage.setItem("selectedProduct", JSON.stringify(product));
+  window.location.href = "confirm.html";
+});
 
       productStage.appendChild(card);
     });
