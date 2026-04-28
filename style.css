@@ -1,3 +1,11 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* BODY */
 body {
   font-family: -apple-system, sans-serif;
@@ -51,11 +59,12 @@ body::after {
 }
 /* BACKGROUND */
 .bg {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  background: ("assets/bg.jpg") no-repeat center center;
+  background: url("assets/bg.jpg") no-repeat center center;
   background-size: cover;
   z-index: -1;
+  filter: contrast(1.1) brightness(1.05) saturate(1.1);
 }
 /* UI */
 .voice-ui {
@@ -68,12 +77,12 @@ body::after {
 .orb-hitbox {
   position: absolute;
 
-  top: 10%;              /* 👈 adjust this, not bottom */
+  top: 75%;              /* 👈 adjust this, not bottom */
   left: 50%;
   transform: translate(-50%, -50%);
 
   width: 85px;
-  height: 40px;
+  height: 85px;
   border-radius: 50%;
 
   cursor: pointer;
