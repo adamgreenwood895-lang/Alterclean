@@ -61,7 +61,7 @@ body::after {
 .bg {
   position: fixed;
   inset: 0;
-  background: url("assets/bg.jpg") no-repeat center center;
+  background: url("assets/ordo-bg.png") no-repeat center center;
   background-size: cover;
   z-index: -1;
   filter: contrast(1.1) brightness(1.05) saturate(1.1);
