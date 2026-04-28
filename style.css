@@ -58,10 +58,11 @@ body::after {
   }
 }
 /* BACKGROUND */
-.bg {
-  position: fixed;
-  inset: 0;
-  background: ("assets/bg.jpg") no-repeat center center;
+.bg { 
+  margin: 0;
+  font-family: -apple-system, sans-serif;
+  color: white;
+  background: url("assets/bg.png") no-repeat center center fixed;
   background-size: cover;
   z-index: -1;
   filter: contrast(1.1) brightness(1.05) saturate(1.1);
