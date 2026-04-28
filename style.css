@@ -53,7 +53,7 @@ body::after {
 .bg {
   position: absolute;
   inset: 0;
-  background: ("assets/ordo-bg2.jpg") no-repeat center center;
+  background: ("assets/bg.jpg") no-repeat center center;
   background-size: cover;
   z-index: -1;
 }
